@@ -1,3 +1,4 @@
+import api from '../services/api';
 // Actions Types
 export const LOGIN_USER = 'LOGIN_USER';
 export const login = (payload) => ({
@@ -10,3 +11,14 @@ export const wallet = (payload) => ({
   type: WALLET_USER,
   payload,
 });
+
+export const WALLET_FETCH = 'WALLET_FETCH';
+export const walletfetch = (payload) => ({
+  type: WALLET_FETCH,
+  payload,
+});
+
+export const getCurrency = (currency) => async (dispatch) => {
+  await api(currency)
+    .then((response) => dispatch(walletfetch(response)));
+};

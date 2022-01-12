@@ -1,5 +1,6 @@
-form {
+form { 
   align-items: center;
+  background-color: aquamarine;
   display: flex;
   justify-content: space-between;
   padding: 30px;

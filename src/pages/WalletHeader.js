@@ -7,21 +7,28 @@ class WalletHeader extends React.Component {
   constructor() {
     super();
     this.state = {
-      total: 0,
       currency: 'BRL',
     };
   }
 
+  handleTotal() {
+    const { expenses } = this.props;
+    const total = expenses.reduce((acc, { exchangeRates, currency, value }) => (
+      acc + (Number(exchangeRates[currency].ask) * Number(value))
+    ), 0);
+    return total;
+  }
+
   render() {
     const { email } = this.props;
-    const { total, currency } = this.state;
+    const { currency } = this.state;
     return (
       <header>
         <div className="email" data-testid="email-field">
           {email}
         </div>
         <div data-testid="total-field">
-          { total }
+          { this.handleTotal() }
           <div data-testid="header-currency-field">
             { currency }
           </div>
@@ -33,10 +40,12 @@ class WalletHeader extends React.Component {
 
 const mapStateToProps = (state) => ({
   email: state.user.email,
+  expenses: state.wallet.expenses,
 });
 
 WalletHeader.propTypes = {
   email: PropTypes.string.isRequired,
+  expenses: PropTypes.arrayOf(Object).isRequired,
 };
 
 export default connect(mapStateToProps)(WalletHeader);
