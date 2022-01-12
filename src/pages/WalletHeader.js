@@ -16,7 +16,7 @@ class WalletHeader extends React.Component {
     const total = expenses.reduce((acc, { exchangeRates, currency, value }) => (
       acc + (Number(exchangeRates[currency].ask) * Number(value))
     ), 0);
-    return total;
+    return total.toFixed(2);
   }
 
   render() {
