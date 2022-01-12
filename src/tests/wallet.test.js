@@ -220,7 +220,7 @@ describe('5 - Implemente a lógica para preencher as opções do campo "Moedas",
 describe('6 - Desenvolva uma tabela com os gastos contendo as seguintes características:', () => {
   const initial = initialStateWithExpenses;
 
-  test('A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão', () => {
+  test.only('A tabela deve possuir um cabeçalho com os campos Descrição, Tag, Método de pagamento, Valor, Moeda, Câmbio utilizado, Valor convertido e Moeda de conversão', () => {
     renderWithRouterAndStore(<Wallet />, '/carteira', initial);
 
     expect(screen.getByRole('columnheader', { name: 'Descrição' })).toBeInTheDocument();
